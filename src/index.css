@@ -66,3 +66,10 @@ button { cursor: pointer; font-family: sans-serif; }
 .num    { width: 24px; height: 24px; border-radius: 50%; background: #2a2d3e; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
 .name   { flex: 1; color: #ffffff; font-size: 14px; }
 .amount { color: #ffffff; font-weight: 700; font-size: 16px; }
+.name-edit-input {
+  width: auto;
+  padding: 4px 10px;
+  font-size: 13px;
+  border-radius: 99px;
+  margin-top: 0;
+}

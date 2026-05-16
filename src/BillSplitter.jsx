@@ -1,20 +1,28 @@
 import { useState } from "react";
 
 export default function BillSplitter({ title }) {
-  const [bill, setBill]           = useState("");
-  const [nameInput, setNameInput] = useState("");
-  const [dayInput, setDayInput]   = useState("");
-  const [names, setNames]         = useState([]);
-  const [days, setDays]           = useState([]);
-  const [split, setSplit]         = useState("equal");
+  const [bill, setBill]               = useState("");
+  const [dayInput, setDayInput]       = useState("");
+  const [memberCount, setMemberCount] = useState("");
+  const [names, setNames]             = useState([]);
+  const [days, setDays]               = useState([]);
+  const [split, setSplit]             = useState("equal");
 
   const total = parseFloat(bill) || 0;
-  const count = names.length || 1;
+  const count = parseInt(memberCount) || 0;
 
-  const addName    = () => { if (nameInput.trim()) { setNames(p => [...p, nameInput.trim()]); setNameInput(""); } };
-  const addDay     = () => { if (dayInput.trim())  { setDays(p =>  [...p, parseInt(dayInput) || 30]); setDayInput(""); } };
-  const removeName = i  => setNames(p => p.filter((_, idx) => idx !== i));
-  const removeDay  = i  => setDays(p =>  p.filter((_, idx) => idx !== i));
+  const handleCount = (val) => {
+    const num = parseInt(val) || 0;
+    setMemberCount(val);
+    setNames(Array.from({ length: num }, (_, i) => `Person ${i + 1}`));
+  };
+
+  const updateName = (i, val) => {
+    setNames(p => p.map((n, idx) => idx === i ? val : n));
+  };
+
+  const addDay     = () => { if (dayInput.trim()) { setDays(p => [...p, parseInt(dayInput) || 30]); setDayInput(""); } };
+  const removeDay  = i  => setDays(p => p.filter((_, idx) => idx !== i));
 
   const getAmounts = () => {
     if (split === "equal") return names.map(n => ({ name: n, amount: (total / count).toFixed(2) }));
@@ -29,16 +37,25 @@ export default function BillSplitter({ title }) {
       <label className="bill-label">Total Bill (₹)</label>
       <input type="number" value={bill} onChange={e => setBill(e.target.value)} placeholder="Enter bill amount" />
 
-      <label className="bill-label">Add Name</label>
-      <div className="input-add-row">
-        <input type="text" value={nameInput} onChange={e => setNameInput(e.target.value)} onKeyDown={e => e.key === "Enter" && addName()} placeholder="Enter name" />
-        <button className="add-name-btn" onClick={addName}>Add</button>
-      </div>
-      <div className="name-list">
-        {names.map((n, i) => (
-          <div key={i} className="name-tag">{i + 1}. {n} <button className="remove-name-btn" onClick={() => removeName(i)}>×</button></div>
-        ))}
-      </div>
+      <label className="bill-label">No. of Members</label>
+      <input type="number" value={memberCount} onChange={e => handleCount(e.target.value)} placeholder="e.g. 4" />
+
+      {names.length > 0 && (
+        <>
+          <label className="bill-label">Names (click to edit)</label>
+          <div className="name-list">
+            {names.map((n, i) => (
+              <input
+                key={i}
+                type="text"
+                className="name-edit-input"
+                value={n}
+                onChange={e => updateName(i, e.target.value)}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       <label className="bill-label">Split by</label>
       <div className="btn-row">
