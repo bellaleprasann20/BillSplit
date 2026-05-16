@@ -1,37 +1,30 @@
 import { useState } from "react";
-import ElectricityBill from "./ElectricityBill";
-import WaterBill from "./WaterBill";
-import WifiBill from "./WifiBill";
+import BillSplitter from "./BillSplitter";
+
+const TABS = [
+  { id: "electricity", label: "⚡ Electricity", title: "⚡ Electricity Bill" },
+  { id: "water",       label: "💧 Water",       title: "💧 Water Bill"       },
+  { id: "wifi",        label: "📶 WiFi",         title: "📶 WiFi Bill"        },
+];
 
 export default function App() {
   const [tab, setTab] = useState("electricity");
-
-  const tabs = [
-    { id: "electricity", label: " Electricity" },
-    { id: "water",       label: " Water"       },
-    { id: "wifi",        label: " WiFi"         },
-  ];
+  const current = TABS.find(t => t.id === tab);
 
   return (
     <div className="app">
       <div className="navbar">
         <span className="brand">⚡ BillSplit</span>
         <div className="tab-group">
-          {tabs.map(t => (
-            <button
-              key={t.id}
-              onClick={() => setTab(t.id)}
-              className={`tab-btn ${tab === t.id ? "active" : ""}`}
-            >
+          {TABS.map(t => (
+            <button key={t.id} onClick={() => setTab(t.id)} className={`tab-btn ${tab === t.id ? "active" : ""}`}>
               {t.label}
             </button>
           ))}
         </div>
       </div>
       <div className="content">
-        {tab === "electricity" && <ElectricityBill />}
-        {tab === "water"       && <WaterBill />}
-        {tab === "wifi"        && <WifiBill />}
+        <BillSplitter key={tab} title={current.title} />
       </div>
     </div>
   );
