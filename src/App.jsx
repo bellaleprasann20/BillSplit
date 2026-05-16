@@ -2,9 +2,9 @@ import { useState } from "react";
 import BillSplitter from "./BillSplitter";
 
 const TABS = [
-  { id: "electricity", label: "⚡ Electricity", title: "⚡ Electricity Bill" },
-  { id: "water",       label: "💧 Water",       title: "💧 Water Bill"       },
-  { id: "wifi",        label: "📶 WiFi",         title: "📶 WiFi Bill"        },
+  { id: "electricity", label: " Electricity", title: " Electricity Bill" },
+  { id: "water",       label: " Water",       title: " Water Bill"       },
+  { id: "wifi",        label: " WiFi",         title: " WiFi Bill"        },
 ];
 
 export default function App() {
