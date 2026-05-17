@@ -49,8 +49,32 @@ button { cursor: pointer; font-family: sans-serif; }
 .add-name-btn        { padding: 10px 18px; background: #ffffff22; border: 1px solid #ffffff; border-radius: 8px; color: #ffffff; font-size: 13px; font-weight: 600; }
 
 /* ── Name Tags ── */
-.name-list       { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.name-tag        { display: flex; align-items: center; gap: 6px; background: #12141e; border: 1px solid #2a2d3e; border-radius: 99px; padding: 4px 10px; font-size: 13px; color: #ffffff; }
+.name-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+.name-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #12141e;
+  border: 1px solid #2a2d3e;
+  border-radius: 99px;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.name-edit-input {
+  width: 90px;
+  padding: 2px 6px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #2a2d3e;
+  background: #1a1d27;
+  color: #ffffff;
+  outline: none;
+  margin-top: 0;
+}
+
 .remove-name-btn { background: none; border: none; color: #ffffff; font-size: 16px; line-height: 1; padding: 0 2px; }
 
 /* ── Total Row ── */
@@ -66,10 +90,3 @@ button { cursor: pointer; font-family: sans-serif; }
 .num    { width: 24px; height: 24px; border-radius: 50%; background: #2a2d3e; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
 .name   { flex: 1; color: #ffffff; font-size: 14px; }
 .amount { color: #ffffff; font-weight: 700; font-size: 16px; }
-.name-edit-input {
-  width: auto;
-  padding: 4px 10px;
-  font-size: 13px;
-  border-radius: 99px;
-  margin-top: 0;
-}
